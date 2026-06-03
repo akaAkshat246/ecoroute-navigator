@@ -1,0 +1,172 @@
+@import url('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-accent: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fbfbf9; /* Soft Warm Cream */
+  color: #1d1d16; /* Deep Charcoal */
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Glassmorphism Panel styles for Soft Luxury layout */
+.glass-panel {
+  background: rgba(244, 244, 240, 0.75); /* Soft Translucent Cream */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(91, 91, 75, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(91, 91, 75, 0.06);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-panel-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(91, 91, 75, 0.2);
+  box-shadow: 0 12px 40px 0 rgba(91, 91, 75, 0.12);
+  background: rgba(244, 244, 240, 0.88);
+}
+
+/* Glow effects matching dashboard accent highlights in soft tones */
+.glow-green {
+  box-shadow: 0 0 25px rgba(124, 124, 103, 0.12);
+}
+.glow-blue {
+  box-shadow: 0 0 25px rgba(124, 124, 103, 0.12);
+}
+.glow-amber {
+  box-shadow: 0 0 25px rgba(124, 124, 103, 0.12);
+}
+.glow-earth {
+  box-shadow: 0 0 25px rgba(124, 124, 103, 0.12);
+}
+
+/* 3D Dashboard Helpers */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* 3D tilt transition smoothings */
+.tilt-card {
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* CSS Transition Animations */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Leaflet Map overrides for Dark Mode */
+.leaflet-container {
+  background: #0b0f19 !important;
+  border-radius: 1rem;
+}
+
+.leaflet-tile {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+.leaflet-bar a {
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+  border-bottom: 1px solid #374151 !important;
+}
+.leaflet-bar a:hover {
+  background-color: #374151 !important;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #111827 !important;
+  color: #f3f4f6 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Scrollbars in soft light colors */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #fbfbf9;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8d8d0;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #abab9c;
+}
+
+/* Pulse animation for active recommended route */
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(16, 185, 129, 0.4); }
+  50% { border-color: rgba(16, 185, 129, 1); }
+}
+.active-recommendation-border {
+  animation: borderPulse 2.5s infinite;
+}
+
+/* Shimmer Text Animation for premium brand identity */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shimmer-text {
+  background: linear-gradient(to right, #7c7c67 0%, #1d1d16 25%, #5b5b4b 50%, #1d1d16 75%, #7c7c67 100%);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Force all interactive elements to use default cursor instead of hand/pointer cursor */
+a, button, select, [role="button"], .cursor-pointer, [type="button"], [type="submit"] {
+  cursor: default !important;
+}
+
+/* Custom Leaflet Marker resets */
+.custom-leaflet-marker, .custom-leaflet-user-marker {
+  background: transparent !important;
+  border: none !important;
+}
